@@ -1,5 +1,6 @@
 package com.example.fotowin
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -17,13 +18,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var allQuest: TextView
     private lateinit var allYesAnswer: TextView
     private lateinit var allNoAnswer: TextView
+    private lateinit var errorAnswer: TextView
     private var yesAnswer : Int = 0
     private var noAnswer : Int = 0
+    private var errorAns : Int = 0
     private val timer : Int = 15
     private var bull : Boolean = true
     private var ans : String = "0"
     var QuestionIndex: Int = 0
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         allQuest = findViewById(R.id.allQuest)
         allYesAnswer = findViewById(R.id.allYesAnswer)
         allNoAnswer = findViewById(R.id.allNoAnswer)
+        errorAnswer = findViewById(R.id.errorAnswer)
 
         displayNextQuestion()
 
@@ -46,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             allQuest.text = "Всего вопросов: $QuestionIndex."
             allYesAnswer.text = "Правильных ответов: $yesAnswer."
             allNoAnswer.text = "Не правильных ответов $noAnswer."
+            errorAnswer.text = "Ваш последний ответ: $errorAns."
         }
     }
 
@@ -94,6 +100,7 @@ class MainActivity : AppCompatActivity() {
             noAnswer--
             Toast("НЕТ! $noAnswer неправильно!")
             answerEditText.text.clear()
+            errorAns = userAnswer.toInt()
             // Ответ неправильный
             // Можно здесь добавить логику для сообщения об ошибке
             // Например: Toast сообщение или другое уведомление

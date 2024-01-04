@@ -52,6 +52,15 @@
         android:layout_marginTop="350dp"
         android:gravity="center"
         android:textSize="24sp" />
+    <TextView
+        android:id="@+id/errorAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:visibility="gone"
+        />
 
 
 </RelativeLayout>
